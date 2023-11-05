@@ -1150,7 +1150,7 @@ int main() {
     int funcao, contador = 0, flag3 = 0, flag4 = 0;
     char flag = 'z';
 
-    FILE * fp = fopen("teste_dfs.txt", "r");
+    FILE * fp = fopen("teste_g_0.txt", "r");
 
     if(fp == NULL) {
         printf("Falha ao abrir o arquivo principal.\n");
