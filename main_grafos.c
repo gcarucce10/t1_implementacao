@@ -624,13 +624,14 @@ struct retorno_lista converter_matriz_lista(struct retorno retorno) {
 }
 
 void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
-
+    
     if(ret.tipo == 'g' && ret.valorado == 0) {
         for(int i = 0; i < ret.numero_vertices; i++) {
             int grau = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(ret.matriz_adj[i][j] != 0) {
-                    grau += ret.matriz_adj[i][j];
+                    if(i == j) grau += (ret.matriz_adj[i][i] * 2); 
+                    else grau += ret.matriz_adj[i][j];
                 }
             }
             printf("O vértice %d tem grau %d.\n", i + 1, grau);
@@ -642,7 +643,8 @@ void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
             int grau_saida = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(ret.matriz_adj[i][j] != 0) {
-                    grau_saida += ret.matriz_adj[i][j];
+                    if(i == j) grau_saida += (ret.matriz_adj[i][j] * 2);
+                    else grau_saida += ret.matriz_adj[i][j];
                 }
             }
             printf("O vértice %d tem grau de saída %d.\n", i + 1, grau_saida);
@@ -652,7 +654,8 @@ void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
             int grau_entrada = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(ret.matriz_adj[j][i] != 0) {
-                    grau_entrada += ret.matriz_adj[j][i];
+                    if(i == j) grau_entrada += (ret.matriz_adj[j][i] * 2);
+                    else grau_entrada += ret.matriz_adj[j][i];
                 }
             }
             printf("O vértice %d tem grau de entrada %d.\n", i + 1, grau_entrada);
@@ -664,7 +667,8 @@ void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
             int grau = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(contador_pesos.matriz_contador[i][j] != 0) {
-                    grau += contador_pesos.matriz_contador[i][j];
+                    if(i == j) grau += (contador_pesos.matriz_contador[i][j] * 2);
+                    else grau += contador_pesos.matriz_contador[i][j];
                 }
             }
             printf("O vértice %d tem grau %d.\n", i + 1, grau);
@@ -676,7 +680,8 @@ void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
             int grau_saida_ponderado = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(contador_pesos.matriz_contador[i][j] != 0) {
-                    grau_saida_ponderado += contador_pesos.matriz_contador[i][j];
+                    if(i == j) grau_saida_ponderado += (contador_pesos.matriz_contador[i][j] * 2);
+                    else grau_saida_ponderado += contador_pesos.matriz_contador[i][j];
                 }
             }
             printf("O vértice %d tem grau de saída %d.\n", i + 1, grau_saida_ponderado);
@@ -686,7 +691,8 @@ void calcular_graus(struct retorno ret, struct pesos contador_pesos) {
             int grau_entrada_ponderado = 0;
             for(int j = 0; j < ret.numero_vertices; j++) {
                 if(contador_pesos.matriz_contador[j][i] != 0) {
-                    grau_entrada_ponderado += contador_pesos.matriz_contador[j][i];
+                    if(i == j) grau_entrada_ponderado += (contador_pesos.matriz_contador[j][i] * 2);
+                    else grau_entrada_ponderado += contador_pesos.matriz_contador[j][i];
                 }
             }
             printf("O vértice %d tem grau de entrada %d.\n", i + 1, grau_entrada_ponderado);
